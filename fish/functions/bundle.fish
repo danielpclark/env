@@ -1,6 +1,6 @@
 function bundle 
   command bundle $argv
-  if begin; test (count $argv) -gt 1; and test $argv[1]=gem; end
+  if begin; test (count $argv) -gt 1; and test (string match $argv[1] gem); end
     set -l cmd $argv[1]
     set -l ghuser (git config --get github.user)
     set -l folder $argv[2]
@@ -36,7 +36,7 @@ script: bundle exec rake test
 after_success:
   - bundle exec codeclimate-test-reporter
 "
-    set -l origin "https://github.com/$ghuser/$gemified.git"
+    set -l origin "git@github.com:$ghuser/$gemified.git"
     echo "Creating git remote origin $origin ..."
     cd $folder
     git remote add origin $origin
