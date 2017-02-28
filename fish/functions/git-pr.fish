@@ -1,4 +1,4 @@
-function pr
+function git-pr
   set -l id $argv[1]
   if test -z $id
     echo "Need Pull request number as argument"
