@@ -119,3 +119,6 @@ augroup END
 set hidden
 let g:racer_cmd = $HOME . "/bin/racer"
 let $RUST_SRC_PATH = $HOME . "/.cargo/bin"
+
+let g:ycm_key_list_select_completion = ['<Down>'] " Remove <Tab> from the list of keys mapped by YCM.
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "ᐅ"
