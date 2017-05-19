@@ -1,5 +1,5 @@
 function fish_prompt
-	if not set -q -g __fish_robbyrussell_functions_defined
+  if not set -q -g __fish_robbyrussell_functions_defined
     set -g __fish_robbyrussell_functions_defined
     function _git_branch_name
       echo (git rev-parse --abbrev-ref HEAD ^/dev/null)
@@ -19,7 +19,7 @@ function fish_prompt
     end
 
     function _git_upstream_current_ref
-      echo (git rev-parse --short (git remote ^/dev/null)/(git rev-parse --abbrev-ref HEAD ^/dev/null) ^/dev/null; or echo "[unpub]")
+      echo (git rev-parse --short origin/(git rev-parse --abbrev-ref HEAD ^/dev/null) ^/dev/null; or echo "[unpub]")
     end
 
     function _git_current_ref
