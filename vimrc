@@ -2,6 +2,8 @@ set nocompatible      " We're running Vim, not Vi!
 syntax enable
 filetype off           " Enable filetype detection
 
+let g:rust_recommended_style = 0
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -18,16 +20,21 @@ Plugin 'DataWraith/auto_mkdir'
 Plugin 'mattn/webapi-vim'
 " Emmet
 " Plugin 'mattn/emmet-vim'
+" Plugin 'w0rp/ale' " Conflicts with syntastic
+Plugin 'vim-airline/vim-airline'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/vimproc'
 Plugin 'dag/vim-fish'
 Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-bundler'
+" Plugin 'tpope/vim-bundler'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'rhysd/vim-crystal'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-eunuch'
 Plugin 'janko-m/vim-test'
+Plugin 'ngmy/vim-rubocop'
 " Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 " Plugin 'mattn/gist-vim'
@@ -93,7 +100,7 @@ nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 nmap <silent> <leader>b :!bundle<CR>
 nmap <silent> <leader>q :w !write-well %<CR>
-nmap <silent> <leader>w :w !echo Word Count: `wc -w`<CR>
+nmap <silent> <leader>w :w !echo Word Count: $(wc -w %)<CR>
 nmap <silent> <leader>e :w !mdspell -r -n -a --en-us %<CR>
 
 " Enable seeing-is-believing mappings only for Ruby
@@ -111,10 +118,26 @@ augroup seeingIsBelievingSettings
   autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing-is-believing-run)
 augroup END
 
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
 "if $COLORTERM == 'gnome-terminal'
 "  set t_Co=256
 "endif
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" let g:airline#extensions#ale#enabled = 1
+
+" Haskell
+nnoremap <Leader>ht :GhcModType<cr>
+nnoremap <Leader>htc :GhcModTypeClear<cr>
 
 set hidden
 let g:racer_cmd = $HOME . "/bin/racer"
