@@ -20,7 +20,6 @@ Plugin 'DataWraith/auto_mkdir'
 Plugin 'mattn/webapi-vim'
 " Emmet
 " Plugin 'mattn/emmet-vim'
-" Plugin 'w0rp/ale' " Conflicts with syntastic
 Plugin 'vim-airline/vim-airline'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc'
@@ -100,7 +99,6 @@ nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 nmap <silent> <leader>b :!bundle<CR>
 nmap <silent> <leader>q :w !write-well %<CR>
-nmap <silent> <leader>w :w !echo Word Count: $(wc -w %)<CR>
 nmap <silent> <leader>e :w !mdspell -r -n -a --en-us %<CR>
 
 " Enable seeing-is-believing mappings only for Ruby
