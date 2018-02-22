@@ -21,6 +21,7 @@ Plugin 'mattn/webapi-vim'
 " Emmet
 " Plugin 'mattn/emmet-vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc'
 Plugin 'dag/vim-fish'
@@ -143,3 +144,5 @@ let $RUST_SRC_PATH = $HOME . "/.cargo/bin"
 
 let g:ycm_key_list_select_completion = ['<Down>'] " Remove <Tab> from the list of keys mapped by YCM.
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "ᐅ"
+
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
