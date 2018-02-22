@@ -45,8 +45,8 @@ Plugin 'reedes/vim-pencil'
 Plugin 'sunaku/vim-ruby-minitest'
 " GPG support
 Plugin 'jamessan/vim-gnupg'
-" Plugin 'jelera/vim-javascript-syntax'
-" Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
 " Plugin 'tpope/vim-heroku'
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
