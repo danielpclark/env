@@ -31,6 +31,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'rhysd/vim-crystal'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'posva/vim-vue'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-eunuch'
 Plugin 'janko-m/vim-test'
@@ -146,3 +147,5 @@ let g:ycm_key_list_select_completion = ['<Down>'] " Remove <Tab> from the list o
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "ᐅ"
 
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+set shell=/usr/bin/fish
