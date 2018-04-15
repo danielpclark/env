@@ -1,5 +1,5 @@
 function fish_prompt
-  if not set -q -g __fish_robbyrussell_functions_defined
+	if not set -q -g __fish_robbyrussell_functions_defined
     set -g __fish_robbyrussell_functions_defined
     function _git_branch_name
       echo (git rev-parse --abbrev-ref HEAD ^/dev/null)
