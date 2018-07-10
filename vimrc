@@ -16,10 +16,7 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 Plugin 'DataWraith/auto_mkdir'
-" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'mattn/webapi-vim'
-" Emmet
-" Plugin 'mattn/emmet-vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
@@ -27,7 +24,6 @@ Plugin 'Shougo/vimproc'
 Plugin 'dag/vim-fish'
 Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-rails'
-" Plugin 'tpope/vim-bundler'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'rhysd/vim-crystal'
 Plugin 'kchmck/vim-coffee-script'
@@ -36,20 +32,18 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-eunuch'
 Plugin 'janko-m/vim-test'
 Plugin 'ngmy/vim-rubocop'
-" Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
-" Plugin 'mattn/gist-vim'
 Plugin 'othree/html5.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'reedes/vim-pencil'
+Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/goyo.vim'
 Plugin 'sunaku/vim-ruby-minitest'
 " GPG support
 Plugin 'jamessan/vim-gnupg'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-" Plugin 'tpope/vim-heroku'
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
@@ -57,7 +51,6 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
 Plugin 'valloric/YouCompleteMe'
 Plugin 'rkennedy/vim-delphi'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -102,6 +95,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 nmap <silent> <leader>b :!bundle<CR>
 nmap <silent> <leader>q :w !write-well %<CR>
 nmap <silent> <leader>e :w !mdspell -r -n -a --en-us %<CR>
+nmap <silent> <leader>c :w !clear<CR>
 
 " Enable seeing-is-believing mappings only for Ruby
 augroup seeingIsBelievingSettings
@@ -148,4 +142,4 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "ᐅ"
 
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
-set shell=/usr/bin/fish
+set shell=/bin/bash
