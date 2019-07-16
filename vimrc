@@ -30,20 +30,26 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'posva/vim-vue'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-surround'
 Plugin 'janko-m/vim-test'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'scrooloose/syntastic'
 Plugin 'othree/html5.vim'
+Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-markdown'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'reedes/vim-pencil'
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'sunaku/vim-ruby-minitest'
+Plugin 'thoughtbot/vim-rspec'
 " GPG support
 Plugin 'jamessan/vim-gnupg'
-Plugin 'jelera/vim-javascript-syntax'
+" Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'leshill/vim-json'
+Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
@@ -51,6 +57,8 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
 Plugin 'valloric/YouCompleteMe'
 Plugin 'rkennedy/vim-delphi'
+Plugin 'vim-latex/vim-latex'
+Plugin 'xuhdev/vim-latex-live-preview'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -87,11 +95,18 @@ set nowrap
 " let g:session_autosave='yes'
 
 " Test Suite key mappings
+" MiniTest
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>r :Minitest<CR>
+nmap <silent> <leader>m :Minitest<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+" RSpec
+map <leader>r :call RunAllSpecs()<CR>
+map <Leader>f :call RunCurrentSpecFile()<CR>
+map <Leader>n :call RunNearestSpec()<CR>
+map <Leader>p :call RunLastSpec()<CR>
+" Custom
 nmap <silent> <leader>b :!bundle<CR>
 nmap <silent> <leader>q :w !write-well %<CR>
 nmap <silent> <leader>e :w !mdspell -r -n -a --en-us %<CR>
@@ -141,5 +156,9 @@ let g:ycm_key_list_select_completion = ['<Down>'] " Remove <Tab> from the list o
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "ᐅ"
 
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+let g:syntastic_ruby_rubocop_exec = system("which rubocop")
+
+let g:ale_fixers = ['prettier', 'eslint']
 
 set shell=/bin/bash
