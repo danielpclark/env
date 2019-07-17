@@ -1,4 +1,5 @@
 set nocompatible      " We're running Vim, not Vi!
+set encoding=utf-8
 syntax enable
 filetype off           " Enable filetype detection
 
