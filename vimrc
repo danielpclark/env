@@ -17,7 +17,10 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 Plugin 'DataWraith/auto_mkdir'
+" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'mattn/webapi-vim'
+" Emmet
+" Plugin 'mattn/emmet-vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
@@ -25,18 +28,19 @@ Plugin 'Shougo/vimproc'
 Plugin 'dag/vim-fish'
 Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-rails'
+" Plugin 'tpope/vim-bundler'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'rhysd/vim-crystal'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'posva/vim-vue'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-surround'
 Plugin 'janko-m/vim-test'
 Plugin 'ngmy/vim-rubocop'
+" Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
+" Plugin 'mattn/gist-vim'
 Plugin 'othree/html5.vim'
-Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-markdown'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'reedes/vim-pencil'
@@ -46,11 +50,14 @@ Plugin 'sunaku/vim-ruby-minitest'
 Plugin 'thoughtbot/vim-rspec'
 " GPG support
 Plugin 'jamessan/vim-gnupg'
-" Plugin 'jelera/vim-javascript-syntax'
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'leshill/vim-json'
 Plugin 'w0rp/ale'
+Plugin 'tpope/vim-haml'
+" Plugin 'tpope/vim-heroku'
+" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
@@ -60,6 +67,7 @@ Plugin 'valloric/YouCompleteMe'
 Plugin 'rkennedy/vim-delphi'
 Plugin 'vim-latex/vim-latex'
 Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -130,6 +138,8 @@ augroup END
 
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
+autocmd FileType c,cpp,js,coffee,vue,rb,jsx,css,scss,yml,haml,slim,rs autocmd BufWritePre <buffer> %s/\s\+$//e
+
 "if $COLORTERM == 'gnome-terminal'
 "  set t_Co=256
 "endif
@@ -163,3 +173,53 @@ let g:syntastic_ruby_rubocop_exec = system("which rubocop")
 let g:ale_fixers = ['prettier', 'eslint']
 
 set shell=/bin/bash
+let s:comment_map = {}
+let s:comment_map["c"] = '\/\/'
+let s:comment_map["cpp"] = '\/\/'
+let s:comment_map["go"] = '\/\/'
+let s:comment_map["java"] = '\/\/'
+let s:comment_map["javascript"] = '\/\/'
+let s:comment_map["javascript.jsx"] = '\/\/'
+let s:comment_map["lua"] = '--'
+let s:comment_map["scala"] = '\/\/'
+let s:comment_map["php"] = '\/\/'
+let s:comment_map["python"] = '#'
+let s:comment_map["ruby"] = '#'
+let s:comment_map["rust"] = '\/\/'
+let s:comment_map["sh"] = '#'
+let s:comment_map["desktop"] = '#'
+let s:comment_map["fstab"] = '#'
+let s:comment_map["conf"] = '#'
+let s:comment_map["profile"] = '#'
+let s:comment_map["bashrc"] = '#'
+let s:comment_map["bash_profile"] = '#'
+let s:comment_map["mail"] = '>'
+let s:comment_map["eml"] = '>'
+let s:comment_map["bat"] = 'REM'
+let s:comment_map["ahk"] = ';'
+let s:comment_map["vim"] = '"'
+let s:comment_map["tex"] = '%'
+
+function! ToggleComment()
+    if has_key(s:comment_map, &filetype)
+        let comment_leader = s:comment_map[&filetype]
+        if getline('.') =~ "^\\s*" . comment_leader . " "
+            " Uncomment the line
+            execute "silent s/^\\(\\s*\\)" . comment_leader . " /\\1/"
+        else
+            if getline('.') =~ "^\\s*" . comment_leader
+                " Uncomment the line
+                execute "silent s/^\\(\\s*\\)" . comment_leader . "/\\1/"
+            else
+                " Comment the line
+                execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
+            end
+        end
+    else
+        echo "No comment leader found for filetype"
+    end
+endfunction
+
+
+nnoremap <leader><Space> :call ToggleComment()<cr>
+vnoremap <leader><Space> :call ToggleComment()<cr>
